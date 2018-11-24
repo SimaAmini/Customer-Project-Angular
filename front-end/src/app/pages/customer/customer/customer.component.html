@@ -1,0 +1,114 @@
+<div class="row">
+  <div class="col-sm-8 offset-sm-2">
+    <div class="card p-4">
+      <div class="card-body">
+        <form dir="rtl" #CustomerForm="ngForm">
+          <div class="form-group row">
+            <label class="">نام</label>
+            <input
+              type="text"
+              name="firstName"
+              #firstName="ngModel"
+              class="form-control"
+              [(ngModel)]="customer.firstName"
+              required
+              [ngClass]="{
+                'red-border-class':
+                  (firstName.touched && firstName.invalid) ||
+                  (firstName.dirty && firstName.invalid)
+              }"
+            />
+            <small class="error-message" [hidden]="!(firstName.invalid && firstName.touched)">لطفا نام را وارد کنید</small>
+          </div>
+          <div class="form-group row">
+            <label> نام خانوادگی</label>
+            <input
+              type="text"
+              name="lastName"
+              class="form-control"
+              [(ngModel)]="customer.lastName"
+              required
+              #lastName="ngModel"
+              [ngClass]="{
+                'red-border-class':
+                  (lastName.touched && lastName.invalid) ||
+                  (lastName.dirty && lastName.invalid)
+              }"
+            />
+            <small class="error-message" [hidden]="!(lastName.invalid && lastName.touched)">لطفا نام خانوادگی را وارد کنید</small>
+          </div>
+          <div class="form-group row">
+            <label> ایمیل</label>
+            <input
+              email
+              type="email"
+              name="email"
+              class="form-control"
+              [(ngModel)]="customer.email"
+              required
+              #email="ngModel"
+              [ngClass]="{
+                'red-border-class':
+                  (email.touched && email.invalid) ||
+                  (email.dirty && email.invalid)
+              }"
+            />
+            <small class="error-message" [hidden]="!(email.invalid && email.touched)">لطفا ایمیل را وارد کنید</small>
+          </div>
+          <div class="form-group row">
+            <label> شماره همراه</label>
+            <input
+              type="number"
+              name="phoneNumber"
+              class="form-control"
+              [(ngModel)]="customer.phoneNumber"
+              required
+              #phoneNumber="ngModel"
+              [ngClass]="{
+                'red-border-class':
+                  (phoneNumber.touched && phoneNumber.invalid) ||
+                  (phoneNumber.dirty && phoneNumber.invalid)
+              }"
+            />
+            <small class="error-message" [hidden]="!(phoneNumber.invalid && phoneNumber.touched)">لطفا شماره موبایل را وارد کنید</small>
+          </div>
+          <div class="form-group row">
+            <label> آدرس</label>
+            <textarea
+              type="text"
+              name="address"
+              class="form-control"
+              [(ngModel)]="customer.address"
+              required
+              #address="ngModel"
+              [ngClass]="{
+                'red-border-class':
+                  (address.touched && address.invalid) ||
+                  (address.dirty && address.invalid)
+              }"
+            ></textarea>
+            <small class="error-message" [hidden]="!(address.invalid && address.touched)">لطفا آدرس را وارد کنید</small>
+          </div>
+          <span class="error-message">{{ message }}</span>
+          <button
+            *ngIf="formState == 'add'"
+            class="btn btn-success"
+            (click)="fnAddCustomer()"
+          >
+            ثبت نام
+          </button>
+          <button
+            *ngIf="formState == 'edit'"
+            class="btn btn-success"
+            (click)="fnEditCustomer()"
+          >
+            ویرایش
+          </button>
+          <button class="btn btn-primary mr-2" (click)="fnBack()">
+            بازگشت
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="row"><button class="btn btn-outline-info mb-3 mt-3" [routerLink]="['/customer/new']" routerLinkActive="router-link-active" >ثبت مشتری جدید</button></div>
+<div class="row">
+<div class="mb-5">
+  <dx-data-grid
+    #grid
+    [rtlEnabled]="true"
+    [columnAutoWidth]="true"
+    [wordWrapEnabled]="true"
+    [allowColumnResizing]="true"
+    [height]="600"
+    id="gridContainer"
+    [dataSource]="customerList"
+    [remoteOperations]="false"
+    [allowColumnReordering]="false"
+    [rowAlternationEnabled]="true"
+    [showBorders]="true"
+  >
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-pager
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[10, 25, 50, 100]"
+    ></dxo-pager>
+    <!-- <dxo-search-panel
+      [visible]="true"
+      [highlightCaseSensitive]="true"
+    ></dxo-search-panel> -->
+
+    <dxi-column
+      cellTemplate="indexTemplate"
+      caption=" ردیف"
+      alignment="center"
+      [width]="60"
+    >
+      <div *dxTemplate="let itemData of 'indexTemplate'">
+        {{
+          itemData.component.pageSize() * itemData.component.pageIndex() +
+            itemData.rowIndex +
+            1
+        }}
+      </div>
+    </dxi-column>
+
+    <dxi-column
+      dataField="firstName"
+      caption="نام "
+      alignment="center"
+    ></dxi-column>
+    <dxi-column
+      dataField="lastName"
+      alignment="center"
+      caption="نام خانوادگی "
+    ></dxi-column>
+    <dxi-column
+      dataField="phoneNumber"
+      alignment="center"
+      caption="شماره تلفن"
+      [hidingPriority]="3"
+    ></dxi-column>
+    <dxi-column
+      dataField="address"
+      caption="آدرس "
+      [hidingPriority]="1"
+      alignment="center"
+    ></dxi-column>
+    <dxi-column
+      caption="ایمیل"
+      dataField="email"
+      alignment="center"
+      [hidingPriority]="2"
+    ></dxi-column>
+    <dxi-column
+      dataField="id"
+      caption="عملیات"
+      cellTemplate="editColumn"
+      [width]="150"
+    ></dxi-column>
+
+    <div *dxTemplate="let customer of 'editColumn'">
+      <button class="btn btn-sm btn-danger" (click)="fnDeleteCustomer(customer.value)">حذف</button>
+
+      <button class="btn btn-sm btn-info mr-3 ml-3"  routerLink="/customer/{{customer.value}}" >ویرایش</button>
+    </div>
+  </dx-data-grid>
+</div>
+</div>

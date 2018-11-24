@@ -1,0 +1,20 @@
+{
+  "name": "customer-project-backend",
+  "version": "1.0.0",
+  "description": "customer-project-backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "customer-project-backend"
+  ],
+  "author": "JSA",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.3",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.6"
+  }
+}
